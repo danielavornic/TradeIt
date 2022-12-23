@@ -1,5 +1,5 @@
 import { Flex, Heading, Stack } from "@chakra-ui/react";
-import { Layout, SignupForm } from "../components";
+import { Layout, LogInForm, SignupForm } from "../components";
 
 export default function Home() {
   return (
@@ -11,6 +11,7 @@ export default function Home() {
             Sign up to TradeIt
           </Heading>
           <SignupForm />
+          <LogInForm />
         </Stack>
       </Flex>
     </Layout>

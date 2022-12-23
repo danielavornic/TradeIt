@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useToast } from "@chakra-ui/react";
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -32,7 +33,7 @@ export const UserContext = createContext<UserContextProps>({
   onLogIn: () => {},
   onLogOut: () => {},
   onSignUp: () => {},
-  onGoogleLogIn: () => {},
+  onGoogleLogIn: () => {}
 });
 
 const auth = getAuth(app);
@@ -118,7 +119,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
         setUser(user);
         setLogged(true);
-        setIsLoading(false);
+        setIsLoading(false);  
         router.push("/home");
       } else {
         setUser(null);
