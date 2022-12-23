@@ -35,7 +35,7 @@ export const UserContext = createContext<UserContextProps>({
   onLogIn: () => {},
   onLogOut: () => {},
   onSignUp: () => {},
-  onGoogleLogIn: () => {}
+  onGoogleLogIn: () => {},
 });
 
 const auth = getAuth(app);
@@ -127,8 +127,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
         setUser(user);
         setLogged(true);
-        setIsLoading(false);  
-        router.push("/");
+        setIsLoading(false);
       } else {
         setUser(null);
         setLogged(false);
