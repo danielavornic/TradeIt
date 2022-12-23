@@ -1,5 +1,5 @@
-import { apiUrl } from "../lib";
-import { User } from "../types";
+import { apiUrl } from "lib";
+import { Product } from "types";
 
 export const products = {
   getList: async () => {
@@ -11,5 +11,14 @@ export const products = {
     }));
 
     return dataArray;
+  },
+
+  add: async (product: Product) => {
+    const response = await fetch(`${apiUrl}/products.json`, {
+      method: "POST",
+      body: JSON.stringify(product),
+    });
+    const data = await response.json();
+    return data;
   },
 };
