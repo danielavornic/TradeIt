@@ -13,7 +13,7 @@ export default function Home() {
           </Heading>
           <SignupForm />
           <Link href={"/login"}>
-            <Text fontSize={"1xl"} textAlign='center'>
+            <Text fontSize={"1xl"} color={"blue"} textAlign='center'>
               Already a member? Log In.
             </Text>
           </Link>

@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack } from "@chakra-ui/react";
+import { Flex, Heading, Stack, Link, Text } from "@chakra-ui/react";
 import { Layout, LogInForm } from "../components";
 
 const Login = () => {
@@ -11,6 +11,11 @@ const Login = () => {
             Sign in to TradeIt
           </Heading>
           <LogInForm />
+          <Link href={"/"}>
+            <Text fontSize={"1xl"} color={"blue"} textAlign='center'>
+              No account? Sign Up.
+            </Text>
+          </Link>
         </Stack>
       </Flex>
     </Layout>
