@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useToast } from "@chakra-ui/react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -10,7 +11,7 @@ import {
 
 import app from "../firebase";
 import { Loader } from "../components";
-import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 interface UserContextProps {
   user: any;
@@ -38,6 +39,7 @@ const auth = getAuth(app);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const toast = useToast();
+  const router = useRouter();
 
   const [logged, setLogged] = useState(false);
   const [user, setUser] = useState<any>(null);
@@ -73,6 +75,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     auth.signOut().then(() => {
       setUser(null);
       setLogged(false);
+      router.push("/");
     });
   };
 
@@ -102,26 +105,28 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         setLogged(true);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         errorToast(errorMessage);
       });
   };
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      user.getIdToken().then((idToken) => {
-        setIdToken(idToken);
-      });
-      setUser(user);
-      setLogged(true);
-      setIsLoading(false);
-    } else {
-      setUser(null);
-      setLogged(false);
-      setIsLoading(false);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        user.getIdToken().then((idToken) => {
+          setIdToken(idToken);
+        });
+        setUser(user);
+        setLogged(true);
+        setIsLoading(false);
+        router.push("/home");
+      } else {
+        setUser(null);
+        setLogged(false);
+        setIsLoading(false);
+      }
+    });
+  }, []);
 
   return (
     <UserContext.Provider
