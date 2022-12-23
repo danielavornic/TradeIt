@@ -1,9 +1,10 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   Box,
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -20,12 +21,13 @@ import {
 import { useQuery } from "react-query";
 import { SearchIcon, BellIcon } from "@chakra-ui/icons";
 
-import { useUser } from "../hooks";
-import { categories } from "../api";
+import { useUser } from "hooks";
+import { categories } from "api";
 
 export const Navbar = () => {
   const { data } = useQuery("categories", categories.getList);
   const { user, onLogOut } = useUser();
+  const router = useRouter();
 
   return (
     <>
@@ -37,13 +39,15 @@ export const Navbar = () => {
           mb={2}
         >
           <HStack spacing={4} alignItems={"center"}>
-            <Avatar
-              size='sm'
-              name='TradeIt'
-              bg='teal.500'
-              color='white'
-              rounded='md'
-            />
+            <Link href='/'>
+              <Avatar
+                size='sm'
+                name='TradeIt'
+                bg='teal.500'
+                color='white'
+                rounded='md'
+              />
+            </Link>
             <Menu>
               <MenuButton
                 as={Button}
@@ -51,6 +55,12 @@ export const Navbar = () => {
                 cursor={"pointer"}
                 minW={0}
                 mr={4}
+                onClick={() =>
+                  router.push({
+                    pathname: "/products",
+                    query: { type: "swaps" },
+                  })
+                }
               >
                 <Link href='/products?type=swaps'>Swaps</Link>
               </MenuButton>
@@ -60,6 +70,12 @@ export const Navbar = () => {
                 cursor={"pointer"}
                 minW={0}
                 mr={8}
+                onClick={() =>
+                  router.push({
+                    pathname: "/products",
+                    query: { type: "giveaways" },
+                  })
+                }
               >
                 <Link href='/products?type=giveaways'>Giveaways</Link>
               </MenuButton>

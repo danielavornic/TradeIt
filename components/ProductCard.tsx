@@ -5,11 +5,6 @@ import { product } from "../api";
 
 export const ProductCard = () => {
    const { data } = useQuery("product", product.getList);
-   {data?.map((category) => (
-    <option key={category.id} value={category.id}>
-      {category.id}
-    </option>
-  ))}
   console.log(data)
   return (
     <Card maxW='sm'>
@@ -21,18 +16,14 @@ export const ProductCard = () => {
       />
       <Stack mt='6' spacing='3'>
         <Heading size='md'>Living room Sofa</Heading>
-        <Text>
-          This sofa is perfect for modern tropical spaces, baroque inspired
-          spaces, earthy toned spaces and for people who love a chic design with a
-          sprinkle of vintage design.
-        </Text>
+
         <Text color='blue.600' fontSize='2xl'>
-          $450
+            Type: Swap
         </Text>
       </Stack>
     </CardBody>
     <Divider />
-    <CardFooter>
+    {/* <CardFooter>
       <ButtonGroup spacing='2'>
         <Button variant='solid' colorScheme='blue'>
           Buy now
@@ -41,7 +32,7 @@ export const ProductCard = () => {
           Add to cart
         </Button>
       </ButtonGroup>
-    </CardFooter>
+    </CardFooter> */}
   </Card>
   );
 };

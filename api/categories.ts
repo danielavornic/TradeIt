@@ -1,7 +1,4 @@
-import axios from "axios";
-
-const apiUrl =
-  "https://trade-a95eb-default-rtdb.europe-west1.firebasedatabase.app";
+import { apiUrl } from "../lib";
 
 export const categories = {
   getList: async () => {

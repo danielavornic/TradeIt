@@ -10,7 +10,9 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+import { useMutation } from "react-query";
 import app from "../firebase";
+import { user as userApi } from "../api";
 import { Loader } from "../components";
 import { useRouter } from "next/router";
 
@@ -47,6 +49,15 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [idToken, setIdToken] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
 
+  const { mutate: addUser } = useMutation(userApi.add, {
+    onSuccess: () => {
+      console.log("User added to database");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const errorToast = (message: string) =>
     toast({
       title: "Error",
@@ -62,9 +73,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
-        console.log(user);
-
-        setLogged(true);
       })
       .catch((error) => {
         const errorMessage = error.message;
