@@ -1,11 +1,9 @@
-import { Flex, Heading, Stack } from "@chakra-ui/react";
-import { Layout, LogInForm, Navbar } from "../components";
+import { Flex, Heading, Stack, Card } from "@chakra-ui/react";
+import { Layout, LogInForm, Navbar, ProductCard } from "../components";
 
 const Product = () => {
   return (
-    <Layout title='TradeIt - Login'>
-      <Navbar />
-    </Layout>
+    <ProductCard />
   );
 };
 

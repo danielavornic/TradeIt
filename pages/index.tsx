@@ -1,6 +1,7 @@
 import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { Layout, LogInForm, SignupForm } from "../components";
+import { ProductCard } from "../components/ProductCard";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
           
         </Stack>  
       </Flex>
+      <ProductCard/>
     </Layout>
   );
 }
