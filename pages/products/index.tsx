@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 
-import { products } from "../../api";
-import { Layout } from "../../components";
+import { products } from "api";
+import { Layout } from "components";
 
 const Products = () => {
   const router = useRouter();
