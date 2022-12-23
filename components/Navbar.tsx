@@ -39,13 +39,15 @@ export const Navbar = () => {
           mb={2}
         >
           <HStack spacing={4} alignItems={"center"}>
-            <Avatar
-              size='sm'
-              name='TradeIt'
-              bg='teal.500'
-              color='white'
-              rounded='md'
-            />
+            <Link href='/'>
+              <Avatar
+                size='sm'
+                name='TradeIt'
+                bg='teal.500'
+                color='white'
+                rounded='md'
+              />
+            </Link>
             <Menu>
               <MenuButton
                 as={Button}
