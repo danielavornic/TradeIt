@@ -8,11 +8,12 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
+
 import { useUser } from "../hooks/useUser";
 
 export const LogInForm = () => {
+  const { onGoogleLogIn } = useUser();
   const { onLogIn } = useUser();
-
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -50,6 +51,19 @@ export const LogInForm = () => {
             }}
           >
             Log in
+          </Button>
+          <Button
+                type='submit'
+                onClick={onGoogleLogIn}
+                bg={"white.400"}
+                color={"black"}
+                border={"1px solid black"}
+                margin={"auto"}
+                _hover={{
+                  bg: "white.500",
+                }}  
+              >
+                Sign in with Google
           </Button>
         </Stack>
       </form>

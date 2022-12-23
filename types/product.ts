@@ -1,7 +1,6 @@
 export interface Product {
-  id: string;
+  slug: string;
   name: string;
-  price: number;
   description: string;
   image: string;
   type: "swap" | "giveaway";

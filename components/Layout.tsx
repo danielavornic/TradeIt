@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 import { Navbar } from "./Navbar";
 
@@ -25,7 +26,9 @@ export const Layout = ({
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       {hasNavbar && <Navbar />}
-      <main style={{ minHeight: "calc(100vh - 161px)" }}>{children}</main>
+      <Box px={4} style={{ minHeight: "calc(100vh - 161px)" }}>
+        {children}
+      </Box>
     </>
   );
 };

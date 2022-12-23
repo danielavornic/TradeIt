@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useToast } from "@chakra-ui/react";
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
