@@ -17,6 +17,7 @@ import {
   InputRightElement,
   VStack,
   Select,
+  Text,
 } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { SearchIcon, BellIcon } from "@chakra-ui/icons";
@@ -28,6 +29,7 @@ export const Navbar = () => {
   const { data } = useQuery("categories", categories.getList);
   const { user, onLogOut } = useUser();
   const router = useRouter();
+  const type = router.query.type || "swap";
 
   return (
     <>
@@ -51,33 +53,37 @@ export const Navbar = () => {
             <Menu>
               <MenuButton
                 as={Button}
-                variant={"link"}
+                size='sm'
                 cursor={"pointer"}
                 minW={0}
                 mr={4}
                 onClick={() =>
                   router.push({
                     pathname: "/products",
-                    query: { type: "swaps" },
+                    query: { type: "swap" },
                   })
                 }
               >
-                <Link href='/products?type=swaps'>Swaps</Link>
+                <Text color={type === "swap" ? "teal.500" : "gray.500"}>
+                  Swaps
+                </Text>
               </MenuButton>
               <MenuButton
                 as={Button}
-                variant={"link"}
+                size='sm'
                 cursor={"pointer"}
                 minW={0}
                 mr={8}
                 onClick={() =>
                   router.push({
                     pathname: "/products",
-                    query: { type: "giveaways" },
+                    query: { type: "giveaway" },
                   })
                 }
               >
-                <Link href='/products?type=giveaways'>Giveaways</Link>
+                <Text color={type === "giveaway" ? "teal.500" : "gray.500"}>
+                  Giveaways
+                </Text>
               </MenuButton>
             </Menu>
           </HStack>
@@ -86,13 +92,14 @@ export const Navbar = () => {
               <MenuButton
                 as={Button}
                 rounded={"full"}
-                variant={"link"}
+                variant='link'
                 cursor={"pointer"}
                 minW={0}
-                mr={4}
+                mr={2}
               >
                 <IconButton
-                  size='sm'
+                  size='lg'
+                  variant='ghost'
                   icon={<BellIcon />}
                   aria-label={"Notifications"}
                   rounded={"full"}
