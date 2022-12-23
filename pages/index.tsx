@@ -1,4 +1,5 @@
-import { Flex, Heading, Stack } from "@chakra-ui/react";
+import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import { Layout, LogInForm, SignupForm } from "../components";
 
 export default function Home() {
@@ -11,8 +12,14 @@ export default function Home() {
             Sign up to TradeIt
           </Heading>
           <SignupForm />
-          <LogInForm />
-        </Stack>
+          <Link href={"/login"}>
+            <Text fontSize={"1xl"} textAlign='center'>
+              Already a member? Log In.
+            </Text>
+          </Link>
+          
+          
+        </Stack>  
       </Flex>
     </Layout>
   );

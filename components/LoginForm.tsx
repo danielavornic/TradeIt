@@ -55,11 +55,12 @@ export const LogInForm = () => {
           <Button
                 type='submit'
                 onClick={onGoogleLogIn}
-                bg={"blue.400"}
-                color={"white"}
+                bg={"white.400"}
+                color={"black"}
+                border={"1px solid black"}
                 margin={"auto"}
                 _hover={{
-                  bg: "blue.500",
+                  bg: "white.500",
                 }}  
               >
                 Sign in with Google

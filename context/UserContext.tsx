@@ -120,7 +120,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(user);
         setLogged(true);
         setIsLoading(false);  
-        router.push("/home");
+        router.push("/");
       } else {
         setUser(null);
         setLogged(false);
