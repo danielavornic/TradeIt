@@ -13,10 +13,14 @@ import {
   MenuDivider,
   InputGroup,
   Input,
+  Image,
   InputRightElement,
   VStack,
   Select,
 } from "@chakra-ui/react";
+import { Give } from "./svgs";
+import { Swap } from "./svgs";
+import { Notification } from "./svgs";
 import { useQuery } from "react-query";
 import { SearchIcon, BellIcon } from "@chakra-ui/icons";
 
@@ -47,21 +51,21 @@ export const Navbar = () => {
             <Menu>
               <MenuButton
                 as={Button}
-                variant={"link"}
+                variant={"unstyled"}
                 cursor={"pointer"}
                 minW={0}
                 mr={4}
               >
-                <Link href='/products?type=swaps'>Swaps</Link>
+                 <Swap boxSize={7} />
               </MenuButton>
               <MenuButton
                 as={Button}
-                variant={"link"}
+                variant={"unstyled"}
                 cursor={"pointer"}
                 minW={0}
                 mr={8}
               >
-                <Link href='/products?type=giveaways'>Giveaways</Link>
+                <Give boxSize={7} />
               </MenuButton>
             </Menu>
           </HStack>
@@ -70,17 +74,12 @@ export const Navbar = () => {
               <MenuButton
                 as={Button}
                 rounded={"full"}
-                variant={"link"}
+                variant={"unstyled"}
                 cursor={"pointer"}
                 minW={0}
                 mr={4}
               >
-                <IconButton
-                  size='sm'
-                  icon={<BellIcon />}
-                  aria-label={"Notifications"}
-                  rounded={"full"}
-                />
+                <Notification boxSize={7} />
               </MenuButton>
             </Menu>
             <Menu>
