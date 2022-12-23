@@ -1,11 +1,7 @@
-import { Flex, Heading, Stack, Card } from "@chakra-ui/react";
-import { Layout, LogInForm, Navbar, ProductCard } from "../components";
+import { Layout, ProductCard } from "components";
 
 const Product = () => {
-    
-  return (
-    <ProductCard />
-  );
+  return <Layout title='TradeIt - Product'>Product</Layout>;
 };
 
 export default Product;
