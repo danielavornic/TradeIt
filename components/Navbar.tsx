@@ -17,11 +17,14 @@ import {
   VStack,
   Select,
 } from "@chakra-ui/react";
+import { useQuery } from "react-query";
 import { SearchIcon, BellIcon } from "@chakra-ui/icons";
 
 import { useUser } from "../hooks";
+import { categories } from "../api";
 
 export const Navbar = () => {
+  const { data } = useQuery("categories", categories.getList);
   const { user, onLogOut } = useUser();
 
   return (
@@ -123,9 +126,11 @@ export const Navbar = () => {
             rounded='full'
             size='sm'
           >
-            <option value='option1'>Option 1</option>
-            <option value='option2'>Option 2</option>
-            <option value='option3'>Option 3</option>
+            {data?.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.id}
+              </option>
+            ))}
           </Select>
         </VStack>
       </Box>
