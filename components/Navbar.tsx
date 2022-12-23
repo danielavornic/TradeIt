@@ -35,7 +35,7 @@ export const Navbar = () => {
         >
           <HStack spacing={4} alignItems={"center"}>
             <Avatar
-              size={"sm"}
+              size='sm'
               name='TradeIt'
               bg='teal.500'
               color='white'
@@ -73,7 +73,7 @@ export const Navbar = () => {
                 mr={4}
               >
                 <IconButton
-                  size={"md"}
+                  size='sm'
                   icon={<BellIcon />}
                   aria-label={"Notifications"}
                   rounded={"full"}
@@ -89,21 +89,23 @@ export const Navbar = () => {
                 minW={0}
               >
                 <Avatar
-                  size={"sm"}
+                  size='sm'
                   name={user?.name || "User"}
                   bg='gray.500'
                   color='white'
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>View Profile</MenuItem>
-                <MenuItem>Trades</MenuItem>
-                <MenuItem>My Products</MenuItem>
-                <MenuItem>Wishlist</MenuItem>
-                <MenuItem>Messages</MenuItem>
-                <MenuItem>Settings</MenuItem>
+              <MenuList zIndex={4}>
+                <MenuItem fontSize='sm'>View Profile</MenuItem>
+                <MenuItem fontSize='sm'>Trades</MenuItem>
+                <MenuItem fontSize='sm'>My Products</MenuItem>
+                <MenuItem fontSize='sm'>Wishlist</MenuItem>
+                <MenuItem fontSize='sm'>Messages</MenuItem>
+                <MenuItem fontSize='sm'>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem onClick={onLogOut}>Logout</MenuItem>
+                <MenuItem fontSize='sm' onClick={onLogOut}>
+                  Logout
+                </MenuItem>
               </MenuList>
             </Menu>
           </Flex>
