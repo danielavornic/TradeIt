@@ -23,14 +23,15 @@ const DoSwap = () => {
     products.getBySlug(slug as string)
   );
 
-  const { name, description, image, category, type, createdAt } = data || {
-    name: "",
-    description: "",
-    image: "",
-    category: "",
-    type: "",
-    createdAt: "",
-  };
+  const { name, description, image, category, type, createdAt, userId } =
+    data || {
+      name: "",
+      description: "",
+      image: "",
+      category: "",
+      type: "",
+      createdAt: "",
+    };
 
   return (
     <Layout title={"Product"}>
@@ -67,16 +68,33 @@ const DoSwap = () => {
           </Text>
           <Text>{description}</Text>
         </Box>
-        <Button
-          size='md'
-          height='48px'
-          width='350px'
-          variant='solid'
-          colorScheme='teal'
-          rounded='full'
-        >
-          Swap IT!
-        </Button>
+        {userId === "1" ? (
+          <HStack justifyContent='stretch' w='100%'>
+            <Button size='md' width='full' rounded='full'>
+              Edit
+            </Button>
+            <Button
+              size='md'
+              width='full'
+              variant='outline'
+              colorScheme='teal'
+              rounded='full'
+            >
+              View Requests
+            </Button>
+          </HStack>
+        ) : (
+          <Button
+            size='md'
+            height='48px'
+            width='350px'
+            variant='solid'
+            colorScheme='teal'
+            rounded='full'
+          >
+            Swap IT!
+          </Button>
+        )}
       </VStack>
     </Layout>
   );
