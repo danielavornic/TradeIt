@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Navbar } from "./Navbar";
+import { PlusButton } from "./PlusButton";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -26,7 +27,10 @@ export const Layout = ({
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       {hasNavbar && <Navbar />}
+     
       <main>{children}</main>
+     
+      <PlusButton/>
     </>
   );
 };

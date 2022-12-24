@@ -1,5 +1,4 @@
-import React from "react";
-import { Layout} from "../../components";
+import { Layout} from "components";
 import { Input,
          Box,
          VStack,
@@ -11,8 +10,16 @@ import { Input,
          Spacer, HStack, Select,
          Textarea, Radio, RadioGroup
         } from '@chakra-ui/react'
+import { useMutation } from "react-query";
+
+import { products } from "api";
+import { createSlug } from "utils";
+  
+
 const AddProduct = () => {
-  const [value, setValue] = React.useState('0')
+  const [value, setValue] = React.useState('0');
+  const { mutate } = useMutation(products.add);
+  
   return(
     <>
     <Layout title='TradeIt - Add product'>
@@ -101,9 +108,6 @@ const AddProduct = () => {
       
     </Layout>
     </>
-    
   ) 
-  
-};
 
 export default AddProduct;
