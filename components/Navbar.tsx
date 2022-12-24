@@ -40,7 +40,6 @@ export const Navbar = () => {
       pathname: "/products",
       query: { type: type, query: search },
     });
-    console.log(search);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,14 +63,14 @@ export const Navbar = () => {
         <HStack spacing={4} alignItems={"center"}>
           <Link href='/'>
             <IconButton
-                w={10}
-                variant='pointer'
-                icon={<Image src="/logo2.png" />}
-                backgroundColor = {"teal.500"}
-                aria-label={"Notifications"}
-                borderRadius ="10"
-                padding={1}
-              />
+              w={10}
+              variant='pointer'
+              icon={<Image src='/logo2.png' />}
+              backgroundColor={"teal.500"}
+              aria-label={"Notifications"}
+              borderRadius='10'
+              padding={1}
+            />
           </Link>
           <Menu>
             <MenuButton
