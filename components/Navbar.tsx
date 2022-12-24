@@ -20,6 +20,7 @@ import {
   Select,
   Text,
   Image,
+  Badge,
 } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { SearchIcon, BellIcon } from "@chakra-ui/icons";
@@ -32,6 +33,7 @@ export const Navbar = () => {
   const router = useRouter();
   const type = router.query.type || "";
   const [search, setSearch] = useState("");
+  const [hasCheckedNotifis, setHasCheckedNotifis] = useState(false);
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -109,7 +111,9 @@ export const Navbar = () => {
               as={Button}
               rounded={"full"}
               variant='link'
+              colorScheme={hasCheckedNotifis ? "gray" : "teal"}
               cursor={"pointer"}
+              onClick={() => setHasCheckedNotifis(true)}
               minW={0}
               mr={2}
             >
@@ -121,8 +125,8 @@ export const Navbar = () => {
                 rounded={"full"}
               />
             </MenuButton>
-            <MenuList zIndex={4} h={"45vh"} w={"80vw"}>
-              <MenuItem display='block' h={"33%"} fontSize='sm'>
+            <MenuList zIndex={4} w={"80vw"}>
+              <MenuItem display='block' fontSize='sm'>
                 <p>
                   <b>Morcov Ion </b> has offered to trade your washing machine
                   for his <b>Zenyt Fridge</b>
@@ -133,18 +137,19 @@ export const Navbar = () => {
                     w={"30vw"}
                     mt={3}
                     ml={3}
-                    h='4vh'
+                    size='sm'
                     fontSize='xs'
                     rounded='full'
                   >
                     Accept request
                   </Button>
                   <Button
-                    colorScheme='gray'
+                    colorScheme='teal'
+                    size='sm'
+                    variant='link'
                     w={"30vw"}
                     mt={3}
                     ml={5}
-                    h='4vh'
                     fontSize='xs'
                     rounded='full'
                   >
@@ -153,7 +158,7 @@ export const Navbar = () => {
                 </Flex>
               </MenuItem>
               <MenuDivider />
-              <MenuItem as={"div"} display='block' h={"33%"} fontSize='sm'>
+              <MenuItem as={"div"} display='block' fontSize='sm'>
                 <p>
                   <b>Neamțu David </b> has offered to trade your Sony Vayo for a{" "}
                   <b>coffee machine</b>
@@ -164,18 +169,19 @@ export const Navbar = () => {
                     w={"30vw"}
                     mt={3}
                     ml={3}
-                    h='4vh'
+                    size='sm'
                     fontSize='xs'
                     rounded='full'
                   >
                     Accept request
                   </Button>
                   <Button
-                    colorScheme='gray'
+                    colorScheme='teal'
+                    variant='link'
                     w={"30vw"}
                     mt={3}
                     ml={5}
-                    h='4vh'
+                    size='sm'
                     fontSize='xs'
                     rounded='full'
                   >
@@ -196,7 +202,7 @@ export const Navbar = () => {
                     mt={4}
                     ml={"auto"}
                     mr={"auto"}
-                    h='4vh'
+                    size='sm'
                     fontSize='xs'
                     rounded='full'
                   >
@@ -216,7 +222,7 @@ export const Navbar = () => {
             >
               <Avatar
                 size='sm'
-                name={user?.name || "User"}
+                name={user?.name || "A"}
                 bg='gray.500'
                 color='white'
               />
@@ -236,25 +242,11 @@ export const Navbar = () => {
           </Menu>
         </Flex>
       </Flex>
-      <VStack w='full' spacing={2}>
-        <form onSubmit={handleSearch} style={{ width: "100%" }}>
-          <InputGroup w='full' size='sm'>
-            <Input
-              placeholder='Search for anything'
-              w='full'
-              rounded='full'
-              onChange={handleChange}
-              borderColor='teal.500'
-            />
-            <InputRightElement onClick={handleSearch}>
-              <SearchIcon color='teal.500' />
-            </InputRightElement>
-          </InputGroup>
-        </form>
+      <HStack w='full' spacing={2}>
         <Select
-          placeholder='Browse by category'
+          placeholder='Category'
           borderColor='teal.500'
-          w='full'
+          w='auto'
           rounded='full'
           size='sm'
           onChange={(e: any) =>
@@ -270,7 +262,21 @@ export const Navbar = () => {
             </option>
           ))}
         </Select>
-      </VStack>
+        <form onSubmit={handleSearch} style={{ width: "100%" }}>
+          <InputGroup w='full' size='sm'>
+            <Input
+              placeholder='Search for anything'
+              w='full'
+              rounded='full'
+              onChange={handleChange}
+              borderColor='teal.500'
+            />
+            <InputRightElement onClick={handleSearch}>
+              <SearchIcon color='teal.500' />
+            </InputRightElement>
+          </InputGroup>
+        </form>
+      </HStack>
     </Box>
   );
 };
