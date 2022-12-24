@@ -19,7 +19,7 @@ export const PlusButton = () => {
   boxShadow='md' rounded='md'
   aria-label='Call Sage'
   position = 'fixed'
-  top={525}
+  top={550}
   fontSize='20px'
   icon={<AddIcon />}
   color = 'D3DEE7'

@@ -1,5 +1,5 @@
-import { Layout, SignupForm } from "../components";
+import { Layout } from "components";
 
 export default function Home() {
-  return <Layout title='TradeIt - Login'>hello</Layout>;
+  return <Layout title='TradeIt'>Recommended</Layout>;
 }
