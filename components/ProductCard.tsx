@@ -37,8 +37,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </Heading>
         <Tag textTransform='uppercase'>{type}</Tag>
         <Text mt={2} fontSize='sm'>
-          {description.slice(0, 100)}
-          {description.length > 100 && "..."}
+          {description?.slice(0, 100)}
+          {description?.length > 100 && "..."}
         </Text>
       </CardBody>
       <Divider />
