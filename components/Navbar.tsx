@@ -215,15 +215,15 @@ export const Navbar = () => {
           <Menu>
             <MenuButton
               as={Button}
-              rounded={"full"}
-              variant={"link"}
+              variant='unstyled'
               cursor={"pointer"}
               minW={0}
             >
               <Avatar
                 size='sm'
-                name={user?.name || "A"}
-                bg='gray.500'
+                name={user?.name || "S"}
+                src='/santa-avatar.png'
+                bg='gray.300'
                 color='white'
               />
             </MenuButton>
