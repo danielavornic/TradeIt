@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Navbar } from "./Navbar";
 import { PlusButton } from "./PlusButton";
 
+
 interface LayoutProps {
   children: React.ReactNode;
   title: string;
@@ -30,7 +31,8 @@ export const Layout = ({
      
       <main>{children}</main>
      
-      <PlusButton/>
+      <main><PlusButton/></main>
+    
     </>
   );
 };
