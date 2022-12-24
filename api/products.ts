@@ -21,4 +21,15 @@ export const products = {
     const data = await response.json();
     return data;
   },
+
+  getBySlug: async (slug: string) => {
+    const response = await fetch(`${apiUrl}/products.json`);
+    const data = await response.json();
+    const dataArray = Object.keys(data).map((key) => ({
+      id: key,
+      ...data[key],
+    }));
+    const product = dataArray.find((product) => product.slug === slug);
+    return product;
+  },
 };

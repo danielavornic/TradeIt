@@ -16,7 +16,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useMutation, useQuery } from "react-query";
+import { QueryCache, useMutation, useQuery, useQueryClient } from "react-query";
 
 import { storage } from "../../firebase";
 import { categories, products } from "api";
@@ -27,6 +27,7 @@ const FALLBACK_IMAGE = "https://rental.brmg.md/images/fallback.png";
 
 const AddProduct = () => {
   const toast = useToast();
+  const queryClient = useQueryClient();
   const router = useRouter();
   const [type, setType] = useState("swap");
   const [image, setImage] = useState<File | null>(null);
@@ -37,7 +38,6 @@ const AddProduct = () => {
     description: "",
     image: "",
   });
-
   const slug = createSlug(formValues.name);
 
   const { data } = useQuery("categories", categories.getList);
@@ -45,6 +45,7 @@ const AddProduct = () => {
     onSuccess: () => {
       router.push(`/products/${slug}`);
       toastNotification("Product added successfully", "success");
+      queryClient.invalidateQueries("products");
     },
   });
 

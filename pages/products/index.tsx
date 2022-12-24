@@ -12,19 +12,22 @@ const Products = () => {
   const category = router.query.category;
   const searchQuery = router.query.query as string;
   const { data } = useQuery("products", products.getList);
+  console.log(data);
+
   const filteredProducts = useMemo(
     () =>
       data
-        ?.filter((product) => product?.type === type)
-        .filter((product) => product?.category === category || !category)
-        .filter((product) => {
-          console.log(product?.name?.toLowerCase(), searchQuery?.toLowerCase());
-
-          return (
-            product?.name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
-            !!!searchQuery
-          );
-        }),
+        ? data
+            ?.filter((product) => product?.type === type)
+            ?.filter((product) => product?.category === category || !category)
+            ?.filter((product) => {
+              return (
+                product?.name
+                  ?.toLowerCase()
+                  .includes(searchQuery?.toLowerCase()) || !!!searchQuery
+              );
+            })
+        : [],
     [data, type, category, searchQuery]
   );
 
