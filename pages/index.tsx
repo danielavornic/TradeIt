@@ -1,5 +1,9 @@
-import { Layout } from "components";
+import { Layout, PageTitle } from "components";
 
 export default function Home() {
-  return <Layout title='TradeIt'>Recommended</Layout>;
+  return (
+    <Layout title='TradeIt'>
+      <PageTitle>Recommended</PageTitle>
+    </Layout>
+  );
 }
