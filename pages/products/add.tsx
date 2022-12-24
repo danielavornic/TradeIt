@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import {
   Input,
   Box,
@@ -10,154 +11,233 @@ import {
   Radio,
   RadioGroup,
   Stack,
+  Image,
+  Select,
+  useToast,
 } from "@chakra-ui/react";
-import { useMutation } from "react-query";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useMutation, useQuery } from "react-query";
 
-import { products } from "api";
-import { Layout } from "components";
+import { storage } from "../../firebase";
+import { categories, products } from "api";
+import { Layout, PageTitle } from "components";
 import { createSlug } from "utils";
 
+const FALLBACK_IMAGE = "https://rental.brmg.md/images/fallback.png";
+
 const AddProduct = () => {
-  const [value, setValue] = useState("0");
-  const { mutate } = useMutation(products.add);
+  const toast = useToast();
+  const router = useRouter();
+  const [type, setType] = useState("swap");
+  const [image, setImage] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState(FALLBACK_IMAGE);
+  const [category, setCategory] = useState();
+  const [formValues, setFormValues] = useState({
+    name: "",
+    description: "",
+    image: "",
+  });
+
+  const slug = createSlug(formValues.name);
+
+  const { data } = useQuery("categories", categories.getList);
+  const { mutate } = useMutation(products.add, {
+    onSuccess: () => {
+      router.push(`/products/${slug}`);
+      toastNotification("Product added successfully", "success");
+    },
+  });
+
+  const toastNotification = (title: string, status: "success" | "error") =>
+    toast({
+      title,
+      status,
+      duration: 5000,
+      isClosable: true,
+      position: "top-right",
+    });
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const { name, description } = formValues;
+
+    mutate({
+      name,
+      description,
+      category,
+      type: type as "swap" | "giveaway",
+      image: imageUrl,
+      userId: "1",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      slug,
+    });
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSetCategory = (e: any) => {
+    setCategory(e.target.value);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      const path = `images/${type}/${file.name}`;
+      const imgRef = ref(storage, path);
+      await uploadBytes(imgRef, file);
+      const downloadUrl = await getDownloadURL(imgRef);
+      setImageUrl(downloadUrl);
+    }
+  };
 
   return (
     <>
       <Layout title='TradeIt - Add product'>
-        <Box px={2} pb={5}>
-          <VStack w='full' spacing={2}>
-            <Box
-              w='full'
-              borderColor={"gray.200"}
-              px={2}
-              pb={4}
-              pt={4}
-              rounded='10px'
-            >
-              <Text
-                align='left'
-                position='relative'
+        <PageTitle>Add product</PageTitle>
+        <Box pb={5}>
+          <form onSubmit={handleSubmit} id='form'>
+            <VStack w='full' spacing={2}>
+              <Box
                 w='full'
-                pb={2}
-                color={"teal.500"}
-                fontSize='sm'
+                borderColor={"gray.200"}
+                pb={4}
+                pt={4}
+                rounded='10px'
               >
-                NAME
-              </Text>
-              <Box justifyContent='left' display='flex' w='full'>
-                <Input
-                  placeholder='Type a name to your product..'
-                  size='md'
+                <Text
+                  align='left'
+                  position='relative'
                   w='full'
-                  rounded='10px'
+                  pb={2}
+                  color={"teal.500"}
+                  fontSize='sm'
+                >
+                  NAME
+                </Text>
+                <Box justifyContent='left' display='flex' w='full'>
+                  <Input
+                    placeholder='Type a name...'
+                    size='md'
+                    w='full'
+                    rounded='10px'
+                    name='name'
+                    onChange={handleChange}
+                  />
+                </Box>
+              </Box>
+              <Box w='full' pb={5} rounded='10px'>
+                <Text
+                  align='left'
+                  position='relative'
+                  w='full'
+                  pb={2}
+                  color={"teal.500"}
+                  fontSize='sm'
+                >
+                  IMAGE
+                </Text>
+                <Button as='label' htmlFor='file-input' size='sm'>
+                  Upload image
+                </Button>
+                <Image src={imageUrl} alt='product' maxH='120px' mt={4} />
+                <input
+                  type='file'
+                  accept='image/*'
+                  id='file-input'
+                  className='file-input'
+                  onChange={handleImageUpload}
+                  style={{ display: "none" }}
                 />
               </Box>
-            </Box>
-            <Box w='full' px={2} pb={5} rounded='10px'>
-              <Text
-                align='left'
-                position='relative'
-                w='full'
-                pb={2}
-                color={"teal.500"}
-                fontSize='sm'
-              >
-                IMAGE
-              </Text>
-              <Input
-                id='files'
-                textAlign={"left"}
-                // placeholder="Choose file"
-                // size="md"
-                type='file'
-                border={"1px solid black"}
-                placeholder={"Upload"}
-              />
-            </Box>
-            <Box w='full' borderColor={"gray.200"} px={2} pb={4} rounded='10px'>
-              <Text
-                align='left'
-                position='relative'
-                w='full'
-                color={"teal.500"}
-                fontSize='sm'
-                pb={2}
-              >
-                TYPE
-              </Text>
-              <Box justifyContent='left' display='flex' w='full'>
-                <HStack direction='row' w='full'>
-                  <RadioGroup onChange={setValue} value={value}>
-                    <Stack direction='row'>
-                      <Radio value='1'>Swap</Radio>
-                      <Radio value='2'>Give Away</Radio>
-                    </Stack>
-                  </RadioGroup>
-                </HStack>
-              </Box>
-            </Box>
-
-            <Box w='full' borderColor={"gray.200"} px={2} pb={4} rounded='10px'>
-              <Text
-                align='left'
-                position='relative'
-                w='full'
-                pb={2}
-                color={"teal.500"}
-                fontSize='sm'
-              >
-                DESCRIPTION
-              </Text>
-              <Box justifyContent='left' display='flex' w='full'>
-                <Textarea placeholder='Type a description...' rounded='10px' />
-              </Box>
-            </Box>
-
-            <Box w='full' borderColor={"gray.200"} px={2} pb={4} rounded='10px'>
-              <Text
-                align='left'
-                position='relative'
-                w='full'
-                pb={2}
-                color={"teal.500"}
-                fontSize='sm'
-              >
-                CATEGORIES
-              </Text>
-              <Box justifyContent='left' display='flex' w='full'>
-                <Input
-                  placeholder='Type a category..'
-                  size='md'
+              <Box w='full' borderColor={"gray.200"} pb={4} rounded='10px'>
+                <Text
+                  align='left'
+                  position='relative'
                   w='full'
-                  rounded='10px'
-                />
+                  color={"teal.500"}
+                  fontSize='sm'
+                  pb={2}
+                >
+                  BARTER TYPE
+                </Text>
+                <Box justifyContent='left' display='flex' w='full'>
+                  <HStack direction='row' w='full'>
+                    <RadioGroup onChange={setType} value={type}>
+                      <Stack direction='row'>
+                        <Radio value='swap'>Swap</Radio>
+                        <Radio value='giveaway'>Giveaway</Radio>
+                      </Stack>
+                    </RadioGroup>
+                  </HStack>
+                </Box>
               </Box>
-            </Box>
-            <Box w='full' borderColor={"gray.200"} px={2} pb={4} rounded='10px'>
-              <Text
-                align='left'
-                position='relative'
-                w='full'
-                pb={2}
-                color={"teal.500"}
-                fontSize='sm'
-              >
-                LOCATION
-              </Text>
-              <Box justifyContent='left' display='flex' w='full'>
-                <Input
-                  placeholder='Type a name to your product'
-                  size='md'
-                  w='full'
-                  rounded='10px'
-                />
-              </Box>
-            </Box>
 
-            <Button colorScheme='teal' w={"full"} rounded='full'>
-              Add a product
-            </Button>
-          </VStack>
+              <Box w='full' borderColor={"gray.200"} pb={4} rounded='10px'>
+                <Text
+                  align='left'
+                  position='relative'
+                  w='full'
+                  pb={2}
+                  color={"teal.500"}
+                  fontSize='sm'
+                >
+                  DESCRIPTION
+                </Text>
+                <Box justifyContent='left' display='flex' w='full'>
+                  <Textarea
+                    placeholder='Type a description...'
+                    rounded='10px'
+                    name='description'
+                    onChange={handleChange}
+                  />
+                </Box>
+              </Box>
+
+              <Box w='full' borderColor={"gray.200"} pb={4} rounded='10px'>
+                <Text
+                  align='left'
+                  position='relative'
+                  w='full'
+                  pb={2}
+                  color={"teal.500"}
+                  fontSize='sm'
+                >
+                  CATEGORIES
+                </Text>
+                <Select
+                  placeholder='Select category'
+                  w='full'
+                  onChange={handleSetCategory}
+                >
+                  {data?.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </Select>
+              </Box>
+
+              <Button
+                colorScheme='teal'
+                w={"full"}
+                rounded='full'
+                form='form'
+                type='submit'
+              >
+                Add product
+              </Button>
+            </VStack>
+          </form>
         </Box>
       </Layout>
     </>

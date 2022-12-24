@@ -4,7 +4,7 @@ export interface Product {
   description: string;
   image: string;
   type: "swap" | "giveaway";
-  category: string;
+  category?: string;
   userId: string;
   createdAt: string;
   updatedAt: string;
