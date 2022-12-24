@@ -24,6 +24,14 @@ import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { PageTitle, Layout } from "components";
 
+const otherUsers = [
+  "Apostol Bologa",
+  "Gheorghe Bostan",
+  "Maria Răzeșu",
+  "Veronica Micle",
+  "Maxim Popescu",
+];
+
 const DoSwap = () => {
   const router = useRouter();
   const slug = router.query.slug;
@@ -73,7 +81,10 @@ const DoSwap = () => {
             {new Date(createdAt).toLocaleDateString()}
           </Text>
           <Text>
-            <b>Created by </b>Daniela Vornic
+            <b>Created by </b>
+            {userId === "1"
+              ? "Santa Claus"
+              : otherUsers[Math.floor(Math.random() * otherUsers.length)]}
           </Text>
           <Box>
             <Text>
