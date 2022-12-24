@@ -153,10 +153,16 @@ export const Navbar = () => {
           w='full'
           rounded='full'
           size='sm'
+          onChange={(e: any) =>
+            router.push({
+              pathname: "/products",
+              query: { type: router.query?.type, category: e.target.value },
+            })
+          }
         >
           {data?.map((category) => (
             <option key={category.id} value={category.id}>
-              {category.id}
+              {category.name}
             </option>
           ))}
         </Select>
