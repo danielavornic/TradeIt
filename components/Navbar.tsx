@@ -127,6 +127,90 @@ export const Navbar = () => {
                 rounded={"full"}
               />
             </MenuButton>
+            <MenuList zIndex={4} h={"45vh"} w={"80vw"}>
+              <MenuItem display='block' h={"33%"} fontSize='sm'>
+                <p>
+                  <b>Morcov Ion </b> has offered to trade your washing machine
+                  for his <b>Zenyt Fridge</b>
+                </p>
+                <Flex>
+                  <Button
+                    colorScheme='teal'
+                    w={"30vw"}
+                    mt={3}
+                    ml={3}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Accept request
+                  </Button>
+                  <Button
+                    colorScheme='gray'
+                    w={"30vw"}
+                    mt={3}
+                    ml={5}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Delete
+                  </Button>
+                </Flex>
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem as={"div"} display='block' h={"33%"} fontSize='sm'>
+                <p>
+                  <b>Neamțu David </b> has offered to trade your Sony Vayo for a{" "}
+                  <b>coffee machine</b>
+                </p>
+                <Flex>
+                  <Button
+                    colorScheme='teal'
+                    w={"30vw"}
+                    mt={3}
+                    ml={3}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Accept request
+                  </Button>
+                  <Button
+                    colorScheme='gray'
+                    w={"30vw"}
+                    mt={3}
+                    ml={5}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Delete
+                  </Button>
+                </Flex>
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem display='block' h={"33%"} fontSize='sm'>
+                <p>
+                  <b>Ion Suruceanu</b> has accepted your trade request with your
+                  volion for his <b>microphone</b>
+                </p>
+                <Flex>
+                  <Button
+                    colorScheme='teal'
+                    w={"30vw"}
+                    mt={4}
+                    ml={"auto"}
+                    mr={"auto"}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Contact user
+                  </Button>
+                </Flex>
+              </MenuItem>
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton
