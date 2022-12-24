@@ -4,7 +4,7 @@ import { Card, CardBody, Heading } from "@chakra-ui/react";
 const name = "New charge of clothing from different brands";
 export const Recomm1 = () => {
   return (
-    <Card maxW='sm' margin='auto'>
+    <Card maxW='sm' margin='auto' bg='white'>
       <CardBody>
         <Box
           bgImage={`url('hoodie.png')`}

@@ -22,7 +22,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const { name, type, slug, description, image } = product;
 
   return (
-    <Card maxW='sm' onClick={() => router.push(`/products/${slug}`)}>
+    <Card maxW='sm' onClick={() => router.push(`/products/${slug}`)} bg='white'>
       <CardBody>
         <Box
           bgImage={`url(${image || FALLBACK_IMAGE})`}

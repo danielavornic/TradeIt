@@ -4,7 +4,7 @@ import { Card, CardBody, Heading } from "@chakra-ui/react";
 const name = "A book from John";
 export const Recomm4 = () => {
   return (
-    <Card maxW='sm' margin='auto' mt='5'>
+    <Card maxW='sm' margin='auto' mt='5' bg='white'>
       <CardBody>
         <Image src='book.jpg' alt='book' borderRadius='lg' />
         <Heading size='xs' mt='3' mb='1'>

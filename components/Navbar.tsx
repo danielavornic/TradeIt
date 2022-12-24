@@ -47,13 +47,7 @@ export const Navbar = () => {
   };
 
   return (
-    <Box
-      px={4}
-      pb={4}
-      mb={8}
-      borderBottomWidth={1}
-      borderBottomColor={"gray.200"}
-    >
+    <Box px={4} pb={4} borderBottomWidth={1} borderBottomColor={"gray.200"}>
       <Flex
         h={16}
         alignItems={"center"}
@@ -250,14 +244,16 @@ export const Navbar = () => {
               w='full'
               rounded='full'
               onChange={handleChange}
+              borderColor='teal.500'
             />
             <InputRightElement onClick={handleSearch}>
-              <SearchIcon />
+              <SearchIcon color='teal.500' />
             </InputRightElement>
           </InputGroup>
         </form>
         <Select
           placeholder='Browse by category'
+          borderColor='teal.500'
           w='full'
           rounded='full'
           size='sm'

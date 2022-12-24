@@ -4,7 +4,7 @@ import { Card, CardBody, Heading } from "@chakra-ui/react";
 const name = "A practically new pair of headphones";
 export const Recomm3 = () => {
   return (
-    <Card maxW='sm' margin='auto' mt='5'>
+    <Card maxW='sm' margin='auto' mt='5' bg='white'>
       <CardBody>
         <Box
           bgImage={`url('headphone.png')`}

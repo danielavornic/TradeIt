@@ -29,7 +29,12 @@ export const Layout = ({
       </Head>
       {hasNavbar && <Navbar />}
 
-      <Box px={4} style={{ minHeight: "calc(100vh - 161px)" }}>
+      <Box
+        px={4}
+        style={{ minHeight: "calc(100vh - 161px)" }}
+        bg='whiteAlpha.900'
+        pt={4}
+      >
         {children}
       </Box>
 

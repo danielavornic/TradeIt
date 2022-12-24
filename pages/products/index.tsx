@@ -41,7 +41,7 @@ const Products = () => {
       <div>
         {filteredProducts?.length ? (
           filteredProducts?.map((product) => (
-            <Box key={product.id} mb={4}>
+            <Box key={product.id} mb={8}>
               <ProductCard product={product} />
             </Box>
           ))
