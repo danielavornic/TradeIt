@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import {
   Box,
@@ -30,6 +31,21 @@ export const Navbar = () => {
   const { user, onLogOut } = useUser();
   const router = useRouter();
   const type = router.query.type || "swap";
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+
+    router.push({
+      pathname: "/products",
+      query: { type: type, query: search },
+    });
+    console.log(search);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <Box
@@ -142,12 +158,19 @@ export const Navbar = () => {
         </Flex>
       </Flex>
       <VStack w='full' spacing={2}>
-        <InputGroup w='full' size='sm'>
-          <Input placeholder='Search for anything' w='full' rounded='full' />
-          <InputRightElement>
-            <SearchIcon />
-          </InputRightElement>
-        </InputGroup>
+        <form onSubmit={handleSearch} style={{ width: "100%" }}>
+          <InputGroup w='full' size='sm'>
+            <Input
+              placeholder='Search for anything'
+              w='full'
+              rounded='full'
+              onChange={handleChange}
+            />
+            <InputRightElement onClick={handleSearch}>
+              <SearchIcon />
+            </InputRightElement>
+          </InputGroup>
+        </form>
         <Select
           placeholder='Browse by category'
           w='full'
