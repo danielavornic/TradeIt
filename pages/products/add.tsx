@@ -53,7 +53,7 @@ const AddProduct = () => {
     toast({
       title,
       status,
-      duration: 5000,
+      duration: 4000,
       isClosable: true,
       position: "top-right",
     });
