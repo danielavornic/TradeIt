@@ -74,7 +74,7 @@ const DoSwap = () => {
             {category}
           </Tag>
         </HStack>
-        <VStack align='left'>
+        <VStack align='left' mb={12}>
           <Image src={image} alt={name} />
           <Text mb={-2}>
             <b>Published on </b>

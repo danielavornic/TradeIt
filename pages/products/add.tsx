@@ -105,7 +105,7 @@ const AddProduct = () => {
     <>
       <Layout title='TradeIt - Add product'>
         <PageTitle>Add product</PageTitle>
-        <Box pb={5}>
+        <Box pb={5} mb={10}>
           <form onSubmit={handleSubmit} id='form'>
             <VStack w='full' spacing={2}>
               <Box
@@ -150,7 +150,7 @@ const AddProduct = () => {
                 <Button as='label' htmlFor='file-input' size='sm'>
                   Upload image
                 </Button>
-                <Image src={imageUrl} alt='product' maxH='120px' mt={4} />
+                <Image src={imageUrl} alt='product' w='full' mt={4} />
                 <input
                   type='file'
                   accept='image/*'
@@ -182,28 +182,6 @@ const AddProduct = () => {
                   </HStack>
                 </Box>
               </Box>
-
-              <Box w='full' borderColor={"gray.200"} pb={4} rounded='10px'>
-                <Text
-                  align='left'
-                  position='relative'
-                  w='full'
-                  pb={2}
-                  color={"teal.500"}
-                  fontSize='sm'
-                >
-                  DESCRIPTION
-                </Text>
-                <Box justifyContent='left' display='flex' w='full'>
-                  <Textarea
-                    placeholder='Type a description...'
-                    rounded='10px'
-                    name='description'
-                    onChange={handleChange}
-                  />
-                </Box>
-              </Box>
-
               <Box w='full' borderColor={"gray.200"} pb={4} rounded='10px'>
                 <Text
                   align='left'
@@ -226,6 +204,27 @@ const AddProduct = () => {
                     </option>
                   ))}
                 </Select>
+              </Box>
+
+              <Box w='full' borderColor={"gray.200"} pb={4} rounded='10px'>
+                <Text
+                  align='left'
+                  position='relative'
+                  w='full'
+                  pb={2}
+                  color={"teal.500"}
+                  fontSize='sm'
+                >
+                  DESCRIPTION
+                </Text>
+                <Box justifyContent='left' display='flex' w='full'>
+                  <Textarea
+                    placeholder='Type a description...'
+                    rounded='10px'
+                    name='description'
+                    onChange={handleChange}
+                  />
+                </Box>
               </Box>
 
               <Button
