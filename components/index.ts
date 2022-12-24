@@ -10,3 +10,4 @@ export * from "./Recom";
 export * from "./Recom1";
 export * from "./Recom2";
 export * from "./Recom3";
+export * from "./ProductListItem";

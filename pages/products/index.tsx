@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import { products } from "api";
 import { Layout, PageTitle, ProductCard } from "components";
@@ -33,14 +33,17 @@ const Products = () => {
 
   return (
     <Layout title='TradeIt - Products'>
-      <PageTitle>Products</PageTitle>
+      <PageTitle>
+        Products
+        {type && ` for ${type}s`}
+      </PageTitle>
 
       <div>
         {filteredProducts?.length ? (
           filteredProducts?.map((product) => (
-            <div key={product.id}>
+            <Box key={product.id} mb={4}>
               <ProductCard product={product} />
-            </div>
+            </Box>
           ))
         ) : (
           <Text textAlign='center'>No products found</Text>
