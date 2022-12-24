@@ -47,7 +47,7 @@ const DoSwap = () => {
 
   return (
     <>
-      <Layout title={"Product"}>
+      <Layout title={`${name} - TradeIt`} description={description}>
         <Flex align='center' mb={4} alignItems='center'>
           <ArrowBackIcon onClick={() => window.history.back()} />
           <Text size='xs' ml={4}>
