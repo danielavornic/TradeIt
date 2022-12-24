@@ -1,5 +1,13 @@
-import { Heading, Card, CardBody, Divider, Tag, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import {
+  Heading,
+  Card,
+  CardBody,
+  Divider,
+  Tag,
+  Box,
+  Text,
+} from "@chakra-ui/react";
 
 import { Product } from "types";
 
@@ -28,6 +36,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {name}
         </Heading>
         <Tag textTransform='uppercase'>{type}</Tag>
+        <Text mt={2} fontSize='sm'>
+          {description.slice(0, 100)}
+          {description.length > 100 && "..."}
+        </Text>
       </CardBody>
       <Divider />
     </Card>
