@@ -6,3 +6,7 @@ export * from "./Navbar";
 export * from "./PlusButton";
 export * from "./ProductCard";
 export * from "./PageTitle";
+export * from "./Recom";
+export * from "./Recom1";
+export * from "./Recom2";
+export * from "./Recom3";
