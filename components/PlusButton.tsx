@@ -17,20 +17,21 @@ export const PlusButton = () => {
       alignItems='right'
       justifyContent='right'
       py={2}
-      bgRepeat='no-repeat'
       mr={3}
+      bgRepeat='no-repeat'
       onClick={() => router.push("/products/add")}
     >
       <IconButton
-        boxShadow='md'
-        rounded='md'
+        boxShadow='lg'
+        rounded='full'
+        size='lg'
         aria-label='Call Sage'
         position='fixed'
         bottom={6}
         right={4}
         fontSize='20px'
         icon={<AddIcon />}
-        color='D3DEE7'
+        colorScheme='teal'
       />
     </Box>
   );
