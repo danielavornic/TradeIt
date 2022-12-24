@@ -1,12 +1,4 @@
-import {
-  Heading,
-  Card,
-  Image,
-  CardBody,
-  Divider,
-  Tag,
-  Box,
-} from "@chakra-ui/react";
+import { Heading, Card, CardBody, Divider, Tag, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import { Product } from "types";
@@ -19,12 +11,11 @@ const FALLBACK_IMAGE = "https://via.placeholder.com/150";
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const router = useRouter();
-  const { name, type, slug, description, image, userId } = product;
+  const { name, type, slug, description, image } = product;
 
   return (
     <Card maxW='sm' onClick={() => router.push(`/products/${slug}`)}>
       <CardBody>
-        {/* <Image src={image || FALLBACK_IMAGE} alt={name} borderRadius='lg' /> */}
         <Box
           bgImage={`url(${image || FALLBACK_IMAGE})`}
           bgPosition='center'
