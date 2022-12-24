@@ -12,7 +12,6 @@ const Products = () => {
   const category = router.query.category;
   const searchQuery = router.query.query as string;
   const { data } = useQuery("products", products.getList);
-  console.log(data);
 
   const filteredProducts = useMemo(
     () =>

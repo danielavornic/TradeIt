@@ -20,8 +20,6 @@ export const SignupForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formValues);
-
     onSignUp(formValues.email, formValues.password);
   };
 
