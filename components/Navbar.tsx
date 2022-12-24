@@ -128,35 +128,87 @@ export const Navbar = () => {
               />
             </MenuButton>
             <MenuList zIndex={4} h={"45vh"} w={"80vw"}>
-              <MenuItem as={"div"} display="block" h={"33%"} fontSize='sm' borderBottom={"1px solid black"}>
-                 <p><b>Morcov Ion </b> has offered to trade your washing machine for his Zenyt Fridge</p>
-                 <Flex>
-                  <Button colorScheme='teal' w={"30vw"} mt={3} ml={3} h="4vh" fontSize="xs" rounded='full'>
+              <MenuItem display='block' h={"33%"} fontSize='sm'>
+                <p>
+                  <b>Morcov Ion </b> has offered to trade your washing machine
+                  for his <b>Zenyt Fridge</b>
+                </p>
+                <Flex>
+                  <Button
+                    colorScheme='teal'
+                    w={"30vw"}
+                    mt={3}
+                    ml={3}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
                     Accept request
                   </Button>
-                  <Button colorScheme='gray' w={"30vw"} mt={3} ml={5} h="4vh" fontSize="xs" rounded='full'>
-                    Delete request
+                  <Button
+                    colorScheme='gray'
+                    w={"30vw"}
+                    mt={3}
+                    ml={5}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Delete
                   </Button>
-                 </Flex>
+                </Flex>
               </MenuItem>
-              <MenuItem as={"div"} display="block" h={"33%"} fontSize='sm' borderBottom={"1px solid black"}>
-              <p><b>Neamțu David </b> has offered to trade your Sony Vayo for a coffee machine</p>
-                 <Flex>
-                  <Button colorScheme='teal' w={"30vw"} mt={3} ml={3} h="4vh" fontSize="xs" rounded='full'>
+              <MenuDivider />
+              <MenuItem as={"div"} display='block' h={"33%"} fontSize='sm'>
+                <p>
+                  <b>Neamțu David </b> has offered to trade your Sony Vayo for a{" "}
+                  <b>coffee machine</b>
+                </p>
+                <Flex>
+                  <Button
+                    colorScheme='teal'
+                    w={"30vw"}
+                    mt={3}
+                    ml={3}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
                     Accept request
                   </Button>
-                  <Button colorScheme='gray' w={"30vw"} mt={3} ml={5} h="4vh" fontSize="xs" rounded='full'>
-                    Delete request
+                  <Button
+                    colorScheme='gray'
+                    w={"30vw"}
+                    mt={3}
+                    ml={5}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
+                    Delete
                   </Button>
-                 </Flex>
+                </Flex>
               </MenuItem>
-              <MenuItem as={"div"} display="block"  h={"33%"} fontSize='sm'>
-              <p><b>Ion Suruceanu</b> has accepted your trade request with your volion for his microphone</p>
-                 <Flex>
-                  <Button colorScheme='teal' w={"30vw"} mt={4} ml={"auto"} mr={"auto"} h="4vh" fontSize="xs" rounded='full'>
+              <MenuDivider />
+              <MenuItem display='block' h={"33%"} fontSize='sm'>
+                <p>
+                  <b>Ion Suruceanu</b> has accepted your trade request with your
+                  volion for his <b>microphone</b>
+                </p>
+                <Flex>
+                  <Button
+                    colorScheme='teal'
+                    w={"30vw"}
+                    mt={4}
+                    ml={"auto"}
+                    mr={"auto"}
+                    h='4vh'
+                    fontSize='xs'
+                    rounded='full'
+                  >
                     Contact user
                   </Button>
-                 </Flex>
+                </Flex>
               </MenuItem>
             </MenuList>
           </Menu>
