@@ -30,7 +30,7 @@ export const Navbar = () => {
   const { data } = useQuery("categories", categories.getList);
   const { user, onLogOut } = useUser();
   const router = useRouter();
-  const type = router.query.type || "swap";
+  const type = router.query.type || "";
   const [search, setSearch] = useState("");
 
   const handleSearch = (e: any) => {
