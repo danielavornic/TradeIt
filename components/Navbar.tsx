@@ -19,10 +19,10 @@ import {
   VStack,
   Select,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { SearchIcon, BellIcon } from "@chakra-ui/icons";
-
 import { useUser } from "hooks";
 import { categories } from "api";
 
@@ -63,13 +63,15 @@ export const Navbar = () => {
       >
         <HStack spacing={4} alignItems={"center"}>
           <Link href='/'>
-            <Avatar
-              size='sm'
-              name='TradeIt'
-              bg='teal.500'
-              color='white'
-              rounded='md'
-            />
+            <IconButton
+                w={10}
+                variant='pointer'
+                icon={<Image src="/logo2.png" />}
+                backgroundColor = {"teal.500"}
+                aria-label={"Notifications"}
+                borderRadius ="10"
+                padding={1}
+              />
           </Link>
           <Menu>
             <MenuButton
