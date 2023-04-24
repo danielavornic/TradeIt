@@ -1,8 +1,8 @@
 # TradeIt
 
-TradeIt is a mobile-focus web application built for Xmas FAF Hackathon. It aims to facilitate bartering and giveaways within a community.
+TradeIt is a mobile-focused web application built for Xmas FAF Hackathon. It aims to facilitate bartering and giveaways within a community.
 
-Live Demoo can be found here [here](https://tradeit.vercel.app/). Access it on mobile.
+The live Demo can be found here [here](https://tradeit.vercel.app/). Access it on mobile.
 
 The presentation can be viewed [here](https://github.com/danielavornic/TradeIt/blob/main/TradeIt_Slides.pdf).
 
